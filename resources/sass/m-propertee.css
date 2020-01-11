@@ -1,0 +1,355 @@
+:root {
+    font-family: "Roboto", sans-serif;
+    font-size: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+main {
+    --color-main: #ea4335;
+    --color-main-light: #ffad42;
+    --color-main-dark: #bb4d00;
+    --color-secondary: #ffc107;
+    --color-background: #fafafa;
+    background-color: var(--color-background);
+    /* To not hide content below bottom nav */
+    padding-bottom: 56px;
+    min-height: 100vh;
+}
+
+.bigTable {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.cellInTheMiddle {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.smart-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-gap: 8px;
+    padding: 8px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.2);
+    transition: 375ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-title {
+    padding: 24px 16px 16px 16px;
+    font-size: 24px;
+    font-weight: thin;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.card-supporting-text {
+    padding: 16px 16px 24px 16px;
+    font-size: 14px;
+    font-weight: 450;
+    opacity: 0.8;
+}
+
+.card-actions {
+    padding: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.button,
+.bottom-navigation {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.button {
+    color: var(--color-main);
+    border-radius: 2px;
+    position: relative;
+    height: 36px;
+    margin: 0;
+    min-width: 64px;
+    padding: 0 24px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+.button:hover {
+    background-color: rgba(158, 158, 158, 0.2);
+}
+.button:focus:not(:active) {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.button:active {
+    background-color: rgba(158, 158, 158, 0.4);
+}
+
+.button .flat-button:focus:not(:active) {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.bottom-navigation {
+    overflow: hidden;
+    background-color: #ea4335;
+    transition: 375ms;
+    position: fixed;
+    height: 56px;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    font-size: 24px;
+    box-shadow: 0 3px 14px 3px rgba(0, 0, 0, 0.12),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-navigation .bottom-navigation-destination {
+    padding: 16px 0 16px 0;
+    float: left;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 12px;
+    transition: 225ms cubic-bezier(0.4, 0.2, 0, 1);
+    color: rgba(256, 256, 256, 0.87);
+    cursor: pointer;
+}
+
+.bottom-navigation .bottom-navigation-destination.active {
+    padding: 6px 12px 10px 12px;
+}
+
+.bottom-navigation-label {
+    opacity: 0;
+    transition: 225ms cubic-bezier(0.4, 0.2, 0, 1);
+}
+
+.bottom-navigation-destination.active .bottom-navigation-label {
+    font-size: 14px;
+    opacity: 1;
+}
+
+.bottom-navigation .bottom-navigation-destination .material-icons {
+    font-size: 24px;
+    z-index: 4;
+    margin-bottom: 4px;
+    display: block;
+}
+
+@media only screen and (max-width: 384px) {
+    .smart-grid {
+        display: block;
+        padding: 8px;
+    }
+
+    .smart-grid > .card {
+        margin-bottom: 8px;
+    }
+}
+
+@media only screen and (max-width: 671px) {
+    .smart-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        padding-bottom: 56px;
+    }
+}
+
+@media screen and (min-width: 672px) {
+    .smart-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    /* Bottom nav becomes side nav when screen is too big */
+    .bottom-navigation {
+        width: 64px;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        right: initial;
+        box-shadow: 0 3px 14px 3px rgba(0, 0, 0, 0.12),
+            0 4px 15px rgba(0, 0, 0, 0.2);
+        display: initial;
+    }
+
+    .bottom-navigation .bottom-navigation-destination {
+        color: rgba(256, 256, 256, 0.54);
+        padding: 20px;
+    }
+
+    /* No need for label on side nav */
+    .bottom-navigation-label {
+        display: none;
+    }
+
+    .bottom-navigation .bottom-navigation-destination.active {
+        color: rgba(256, 256, 256, 0.87);
+        padding: 20px;
+    }
+
+    .bottom-navigation .bottom-navigation-destination .material-icons {
+        margin: 0;
+    }
+
+    /* <main> doesn't get covered by side nav */
+    main {
+        margin-left: 64px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .smart-grid {
+        padding: 56px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Shamelessly stolen from materialize */
+.progress {
+    position: relative;
+    height: 6px;
+    display: block;
+    width: 100%;
+    background-color: var(--color-main);
+    background-clip: padding-box;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.progress .indeterminate {
+    background-color: rgba(64, 64, 64, 0.34);
+}
+
+.progress .indeterminate:before {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-animation: indeterminate 2.1s
+        cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    -moz-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
+        infinite;
+    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
+        infinite;
+}
+
+.progress .indeterminate:after {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-animation: indeterminate-short 2.1s
+        cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    -moz-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
+        infinite;
+    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
+        infinite;
+    -webkit-animation-delay: 1.15s;
+    -moz-animation-delay: 1.15s;
+    animation-delay: 1.15s;
+}
+
+@-webkit-keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@keyframes indeterminate {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60% {
+        left: 100%;
+        right: -90%;
+    }
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@-webkit-keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+@keyframes indeterminate-short {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60% {
+        left: 107%;
+        right: -8%;
+    }
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}

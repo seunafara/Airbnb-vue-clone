@@ -1,0 +1,43 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.masonry {
+  clear: both;
+  width: 100%;
+  margin-bottom: 10px;
+
+  &__item {
+    float: left;
+    width: 150px;
+    height: 150px;
+    display: block;
+    background-color: #ccc;
+    margin: 0 10px 10px 0;
+    border-radius: 2px;
+
+    &:nth-child(1) {
+      width: 321px;
+      height: 310px;
+      background-color: #666;
+    }
+
+    &:nth-child(16n + 16) {
+      width: 321px;
+      height: 310px;
+      float: right;
+      background-color: #09f;
+    }
+
+    &:nth-child(27n + 27) {
+      width: 321px;
+      height: 310px;
+      background-color: #f90;
+    }
+  }
+}
