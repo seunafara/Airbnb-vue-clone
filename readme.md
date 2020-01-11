@@ -12,3 +12,15 @@ Thank you for considering contributing to the AirBnB Vue clone project! The cont
 
 If you discover a security vulnerability within this application, please send an e-mail to Seun Afara via [seunvigo@gmail.com](mailto:seunvigo@gmail.com). All security vulnerabilities will be promptly addressed.
 
+## What's working?
+
+Home Property lists <br>
+Adding new properties to the application <br>
+Frontend validation when adding property 
+
+## What's Pending?
+Uploading featured image for properties <br>
+List all properties in a separate page per location <br>
+User Profile setup <br>
+Explore random properties tab <br>
+Simple landing, login and registration page design <br>
