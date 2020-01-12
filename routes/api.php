@@ -18,7 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResources(['property' => 'API\PropertyController']);
+Route::get('loadlagos', 'API\PropertyController@loadLagos');
 
 Route::apiResources(['user' => 'API\UserController']);
-
-Route::get('loadlagos', 'API\PropertyController@loadLagos');
+Route::get('profile', 'API\UserController@profile');
+Route::put('profile', 'API\UserController@updateProfile');

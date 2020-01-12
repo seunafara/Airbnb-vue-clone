@@ -38,7 +38,8 @@ const router = new VueRouter({
 import VueProgressBar from 'vue-progressbar'
 
 Vue.use(VueProgressBar, {
-    color: 'rgb(143, 255, 199)',
+    // color: 'rgb(143, 255, 199)',
+    color: '#3490dc',
     failedColor: 'red',
     height: '7px'
 })
@@ -79,10 +80,7 @@ Vue.component(
     require("./components/ExampleComponent.vue").default
 );
 
-Vue.component(
-    "loader-component",
-    require("./components/loader.vue").default
-);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -49,7 +49,7 @@
             <div class="card-body">
               <h5 class="card-title">{{lagosproperty.name}}</h5>
               <p class="card-text" style="margin-bottom: 0.2rem; !important;">${{lagosproperty.price}}/night</p>
-              <p class="card-text"><small class="text-muted">Click To See More..</small></p>
+              <p class="card-text"><small class="text-muted">Click to see more..</small></p>
 
 
             </div>
@@ -58,7 +58,7 @@
         </div>
 
 
-        <button class="btn btn-primary" style="margin-top:15px !important; margin-left:5px !important">See All in Lagos</button>
+        <button class="btn btn-primary" style="margin-top:15px !important; margin-left:5px !important">See all in Lagos</button>
         </div>
 
 
@@ -109,7 +109,7 @@
           <div class="card-body">
             <h5 class="card-title">{{property.name}}</h5>
             <p class="card-text" style="margin-bottom: 0.2rem; !important;">${{property.price}}/night</p>
-            <p class="card-text"><small class="text-muted">Click To See More..</small></p>
+            <p class="card-text"><small class="text-muted">Click to see more..</small></p>
 
 
           </div>

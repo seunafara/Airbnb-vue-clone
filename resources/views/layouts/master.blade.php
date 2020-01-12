@@ -16,11 +16,71 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <link rel="stylesheet" href="./sass/m-propertee.css" /> -->
     <style>
 
 
+      .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+      }
+      .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+      }
+      .avatar-upload .avatar-edit input {
+        display: none;
+      }
+      .avatar-upload .avatar-edit input + label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+      }
+      .avatar-upload .avatar-edit input + label:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+      }
+      .avatar-upload .avatar-edit input + label:after {
+        content: "\f040";
+        font-family: 'FontAwesome';
+        color: #757575;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+      }
+      .avatar-upload .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+      }
+      .avatar-upload .avatar-preview > div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
 
       @media (min-width: 426px) {
         .router-link-exact-active .bottom-navigation-label{
@@ -123,14 +183,14 @@ main {
 .card-title {
     padding: 24px 16px 16px 16px;
     font-size: 24px;
-    font-weight: thin;
+    font-weight: bold;
     color: rgba(0, 0, 0, 0.9);
 }
 
 .card-supporting-text {
     padding: 16px 16px 24px 16px;
     font-size: 14px;
-    font-weight: 450;
+    font-weight: 400;
     opacity: 0.8;
 }
 
@@ -322,113 +382,7 @@ main {
 }
 
 /* Shamelessly stolen from materialize */
-.progress {
-    position: relative;
-    height: 6px;
-    display: block;
-    width: 100%;
-    background-color: var(--color-main);
-    background-clip: padding-box;
-    margin: 0 auto;
-    overflow: hidden;
-}
 
-.progress .indeterminate {
-    background-color: rgba(64, 64, 64, 0.34);
-}
-
-.progress .indeterminate:before {
-    content: "";
-    position: absolute;
-    background-color: inherit;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    -webkit-animation: indeterminate 2.1s
-        cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    -moz-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
-        infinite;
-    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
-        infinite;
-}
-
-.progress .indeterminate:after {
-    content: "";
-    position: absolute;
-    background-color: inherit;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    -webkit-animation: indeterminate-short 2.1s
-        cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-    -moz-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
-        infinite;
-    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
-        infinite;
-    -webkit-animation-delay: 1.15s;
-    -moz-animation-delay: 1.15s;
-    animation-delay: 1.15s;
-}
-
-@-webkit-keyframes indeterminate {
-    0% {
-        left: -35%;
-        right: 100%;
-    }
-    60% {
-        left: 100%;
-        right: -90%;
-    }
-    100% {
-        left: 100%;
-        right: -90%;
-    }
-}
-
-@keyframes indeterminate {
-    0% {
-        left: -35%;
-        right: 100%;
-    }
-    60% {
-        left: 100%;
-        right: -90%;
-    }
-    100% {
-        left: 100%;
-        right: -90%;
-    }
-}
-
-@-webkit-keyframes indeterminate-short {
-    0% {
-        left: -200%;
-        right: 100%;
-    }
-    60% {
-        left: 107%;
-        right: -8%;
-    }
-    100% {
-        left: 107%;
-        right: -8%;
-    }
-}
-
-@keyframes indeterminate-short {
-    0% {
-        left: -200%;
-        right: 100%;
-    }
-    60% {
-        left: 107%;
-        right: -8%;
-    }
-    100% {
-        left: 107%;
-        right: -8%;
-    }
-}
 
 @media (max-width: 425px){
     #logout {
