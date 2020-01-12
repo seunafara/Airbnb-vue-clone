@@ -14,7 +14,7 @@
           <form class="multisteps-form__form" >
 
             <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-              <h3 class="multisteps-form__title">Edit Your User Info</h3>
+              <h3 class="multisteps-form__title">Edit Your Profile</h3>
 
               <div class="container">
 
@@ -34,10 +34,10 @@
               <div class="multisteps-form__content">
                 <div class="form-row mt-4">
                   <div class="col-12 col-sm-6">
-                    <input class="multisteps-form__input form-control" type="text" v-model="form.name" placeholder="Full Name">
+                    <input autocomplete="off" class="multisteps-form__input form-control" type="text" v-model="form.name" placeholder="Full Name">
                   </div>
                   <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-                    <input class="multisteps-form__input form-control" type="text" v-model="form.email" placeholder="Email Address">
+                    <input autocomplete="off" class="multisteps-form__input form-control" type="text" v-model="form.email" placeholder="Email Address">
                   </div>
                 </div>
                 <div class="form-row mt-4">
@@ -88,8 +88,8 @@ export default {
     getProfilePhoto(){
 
       let photo = (this.form.photo.length > 200)  ?  this.form.photo : "img/profile/" +this.form.photo;
-      // let photo =  "img/profile/" +this.form.photo;
       return photo;
+
     },
     uploadPicture(e){
       // console.log('uploading');

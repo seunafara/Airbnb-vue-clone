@@ -45,11 +45,16 @@
         <div v-else class="my-real-content card-group">
 
           <div class="card mt-3" style="margin-left: 5px; margin-right: 5px" v-for="lagosproperty in lagosproperties" :key="lagosproperties.id">
-            <img src="https://a0.muscache.com/im/pictures/91a3448d-78ea-4d44-9b84-d78a75ae01f3.jpg" class="card-img-top lazyload img-responsive" alt="...">
+            <img :src="'/img/property/' + lagosproperty.photo" class="card-img-top lazyload img-responsive" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{lagosproperty.name}}</h5>
               <p class="card-text" style="margin-bottom: 0.2rem; !important;">${{lagosproperty.price}}/night</p>
-              <p class="card-text"><small class="text-muted">Click to see more..</small></p>
+              <div style="overflow: hidden;">
+                <a href="#" class="card-text" style="float: left !important;"><small class="text-muted">Click to see more..</small></a>
+                <img height="25" width="25" :src="'/img/profile/' + lagosproperty.user.photo" style="float: right;border: 1px solid white;border-radius:50%" alt="">
+                <!--              <p style="float: right;">{{ property.user.name}}</p>-->
+
+              </div>
 
 
             </div>
@@ -105,12 +110,19 @@
       <div v-else class="my-real-content card-group">
 
         <div class="card mt-3" style="margin-left: 5px; margin-right: 5px" v-for="property in properties" :key="properties.id">
-          <img src="https://a0.muscache.com/im/pictures/91a3448d-78ea-4d44-9b84-d78a75ae01f3.jpg" class="card-img-top lazyload img-responsive" alt="...">
+
+          <img :src="'/img/property/' + property.photo" class="card-img-top lazyload img-responsive" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{property.name}}</h5>
             <p class="card-text" style="margin-bottom: 0.2rem; !important;">${{property.price}}/night</p>
-            <p class="card-text"><small class="text-muted">Click to see more..</small></p>
 
+
+            <div style="overflow: hidden;">
+              <a href="#" class="card-text" style="float: left !important;"><small class="text-muted">Click to see more..</small></a>
+              <img height="25" width="25" :src="'/img/profile/' + property.user.photo" style="float: right;border: 1px solid white;border-radius:50%" alt="">
+<!--              <p style="float: right;">{{ property.user.name}}</p>-->
+
+            </div>
 
           </div>
         </div>
@@ -132,19 +144,33 @@
 </template>
 
 <script>
+  let user       = '{{ $username->name }}';
+
+
   import { ContentLoader } from 'vue-content-loader';
 export default {
   components: {
     ContentLoader
   },
   data(){
+
     return {
       myData: null,
       properties: {},
-      lagosproperties: {}
+      lagosproperties: {},
+      form: new Form({
+        id: '',
+
+        photo: '',
+      })
     }
   },
   methods: {
+
+    getPropertyProfilePhoto(){
+      let photo =  "img/property/" +this.form.photo;
+      return photo;
+    },
     loadProperties(){
       this.$Progress.start();
       axios.get('api/property')
@@ -164,6 +190,7 @@ export default {
     setTimeout(() => {
       this.myData = 'Example Data';
     }, 5000);
+
 
     // let myDiv = $('.card-title');
     // myDiv.text(myDiv.text().substring(0,40))

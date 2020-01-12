@@ -11356,6 +11356,37 @@ a.text-dark:focus {
   }
 }
 
+label[for=file-input] {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: #fff;
+  opacity: 0.9;
+  font-weight: bold;
+}
+
+input[type=file] {
+  cursor: pointer !important;
+}
+
+input[type=file]::-webkit-file-upload-button {
+  background: #E62163;
+  border: 0;
+  padding: 1em 2em;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 0.2em;
+}
+
+input[type=file]::-ms-browse {
+  background: #E62163;
+  border: 0;
+  padding: 1em 2em;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 0.2em;
+}
+
 .masonry {
   clear: both;
   width: 100%;

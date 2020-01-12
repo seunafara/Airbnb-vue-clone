@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Property;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -15,6 +16,13 @@ class PropertyController extends Controller
 //        $this->middleware('auth:api');
 //
 //    }
+
+//    public function showuser($user) {
+//        $username = User::where('name', $user)
+//            ->firstOrFail();
+//
+//        return Property::latest()->with('user', $username);
+//    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +31,9 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        return Property::latest()->paginate(4);
+//        $username = User::pluck('name', 'id')->firstOrFail();
+
+        return Property::with('user')->latest()->paginate(4);
     }
 
     /**
@@ -51,6 +61,19 @@ class PropertyController extends Controller
                  'location' => 'required|string',
                  'description' => 'required|string|max:3000'
              ]);
+
+
+
+        if($request->photo){
+            $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+
+            // the class below depends on -> http://image.intervention.io/getting_started/installation
+            \Image::make($request->photo)->save(public_path('img/property/').$name);
+
+            $request->merge(['photo' => $name]);
+
+
+        }
 
 
         return Property::create([
@@ -100,7 +123,7 @@ class PropertyController extends Controller
     }
 
     public function loadLagos() {
-        return Property::latest()->where('location', 'lagos')->paginate(4);
+        return Property::with('user')->latest()->where('location', 'lagos')->paginate(4);
     }
 
 

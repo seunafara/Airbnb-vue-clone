@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-
+    <div class="row">
+      <div class="col-12 col-lg-8 m-auto" style="margin-top:30px !important; margin-bottom: 10px !important;">
     <content-loader v-if="!myData"
                     :height="370"
                     :width="450"
@@ -53,10 +54,13 @@
 
 
     <div v-else class="my-real-content">
-    <h1 style="margin-top:40px !important; font-size:1.45rem !important; margin-left: 0px !important;">Add a New Place</h1>
+
+
 
       <form @submit.prevent="createProperty()" >
-        <div class="card" style="padding: 20px 15px 5px 15px;">
+
+        <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
+          <h3 style="margin-top:40px !important; font-size:1.45rem !important; margin-left: 0px !important;">Add a New Place</h3>
         <div class="form-group">
           <label for="name">Property Name</label>
             <input v-model="form.name" type="text" class="form-control"
@@ -114,30 +118,42 @@
           <has-error :form="form" field="email"></has-error>
         </div>
 
-        <div class="form-group">
-          <label for="photo">Add a Photo</label>
-          <div class="col-sm-12">
-            <input name="photo" type="file" id="photo" class="form-input">
+<!--        <div class="form-group">-->
+<!--          <label for="photo">Add a Photo</label>-->
+<!--          <div class="col-sm-12">-->
+<!--            <input name="photo" type="file" id="photo" class="form-input">-->
+<!--          </div>-->
+<!--        </div>-->
+          <div class="form-group">
+<!--          <label for="file-input">File upload</label>-->
+            <label for="">Add a Featured Photo</label>
+            <div class="col-sm-12" style="padding-left: 0px !important;">
+          <input  @change="uploadPropertyPicture" type="file" name="file-input" id="file-input">
           </div>
-        </div>
+          </div>
 
 
 
+
+
+          <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit Now</button>
 
         </div>
         <!-- to align button to middle, put in between this div below -->
         <div class="col text-center">
         </div>
         <!-- end button align -->
-        <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit Now</button>
-      </form>
 
+      </form>
+      </div>
+    </div>
       </div>
   </div>
 
 </template>
 
 <script>
+
 import { ContentLoader } from 'vue-content-loader';
 
 export default {
@@ -154,19 +170,52 @@ export default {
         rooms: '',
         location: '',
         description: '',
-
         email: '',
         photo: ''
       })
     }
   },
   methods: {
+    uploadPropertyPicture(e){
+      // console.log('uploading');
+      let file = e.target.files[0];
+      // console.log(file);
+      let reader = new FileReader();
+
+      if(file) {
+        if (file['size'] < 2111775) {
+          reader.onloadend = (file) => {
+
+            // console.log('RESULT', reader.result)
+            this.form.photo = reader.result;
+          }
+
+          reader.readAsDataURL(file)
+          // console.log(file['size']);
+        } else {
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Image cannot be more than 2 megabytes'
+          })
+        }
+      }
+
+
+
+    },
     createProperty(){
       this.$Progress.start();
       this.form.post('api/property').then(() => {
         this.form.reset();
         console.log('created');
         // show sweet alert notification
+        // success
+        Swalla.fire(
+                'Updated!',
+                'Your property has been added.',
+                'success'
+        )
         toast.fire({
           icon: 'success',
           title: 'Property added successfully'
@@ -178,10 +227,16 @@ export default {
       });
     }
   },
+  created(){
+
+
+  },
   mounted() {
     setTimeout(() => {
       this.myData = 'Example Data';
     }, 5000);
+
   }
 };
 </script>
+

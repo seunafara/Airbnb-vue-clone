@@ -7,6 +7,50 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+$background-color: #292931;
+$button-color: #E62163;
+$button-width: 10em;
+
+label[for="file-input"]{
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: #fff;
+  opacity: .9;
+  font-weight: bold;
+}
+
+input[type="file"] {
+
+  cursor: pointer !Important;
+
+  &::-webkit-file-upload-button {
+    background: $button-color;
+    border: 0;
+    padding: 1em 2em;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .2em;
+  }
+
+  &::-ms-browse {
+    background: $button-color;
+    border: 0;
+    padding: 1em 2em;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .2em;
+  }
+
+}
+
+
+
+
+
+
+
+
 
 
 .masonry {

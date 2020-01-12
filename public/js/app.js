@@ -2133,6 +2133,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2154,32 +2169,60 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    createProperty: function createProperty() {
+    uploadPropertyPicture: function uploadPropertyPicture(e) {
       var _this = this;
+
+      // console.log('uploading');
+      var file = e.target.files[0]; // console.log(file);
+
+      var reader = new FileReader();
+
+      if (file) {
+        if (file['size'] < 2111775) {
+          reader.onloadend = function (file) {
+            // console.log('RESULT', reader.result)
+            _this.form.photo = reader.result;
+          };
+
+          reader.readAsDataURL(file); // console.log(file['size']);
+        } else {
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Image cannot be more than 2 megabytes'
+          });
+        }
+      }
+    },
+    createProperty: function createProperty() {
+      var _this2 = this;
 
       this.$Progress.start();
       this.form.post('api/property').then(function () {
-        _this.form.reset();
+        _this2.form.reset();
 
         console.log('created'); // show sweet alert notification
+        // success
 
+        Swalla.fire('Updated!', 'Your property has been added.', 'success');
         toast.fire({
           icon: 'success',
           title: 'Property added successfully'
         });
 
-        _this.$Progress.finish(); // this.$router.push('home');
+        _this2.$Progress.finish(); // this.$router.push('home');
 
       })["catch"](function () {
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
       });
     }
   },
+  created: function created() {},
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     setTimeout(function () {
-      _this2.myData = 'Example Data';
+      _this3.myData = 'Example Data';
     }, 5000);
   }
 });
@@ -2450,6 +2493,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var user = '{{ $username->name }}';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2459,10 +2515,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       myData: null,
       properties: {},
-      lagosproperties: {}
+      lagosproperties: {},
+      form: new Form({
+        id: '',
+        photo: ''
+      })
     };
   },
   methods: {
+    getPropertyProfilePhoto: function getPropertyProfilePhoto() {
+      var photo = "img/property/" + this.form.photo;
+      return photo;
+    },
     loadProperties: function loadProperties() {
       var _this = this;
 
@@ -2622,8 +2686,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getProfilePhoto: function getProfilePhoto() {
-      var photo = this.form.photo.length > 200 ? this.form.photo : "img/profile/" + this.form.photo; // let photo =  "img/profile/" +this.form.photo;
-
+      var photo = this.form.photo.length > 200 ? this.form.photo : "img/profile/" + this.form.photo;
       return photo;
     },
     uploadPicture: function uploadPicture(e) {
@@ -42592,708 +42655,754 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      !_vm.myData
-        ? _c(
-            "content-loader",
-            {
-              attrs: {
-                height: 370,
-                width: 450,
-                speed: 2,
-                id: "loader-pc",
-                primaryColor: "#695f45",
-                secondaryColor: "#ecebeb"
-              }
-            },
-            [
-              _c("rect", {
-                attrs: {
-                  x: "10",
-                  y: "11.54",
-                  rx: "0",
-                  ry: "0",
-                  width: "0",
-                  height: "0"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "3.14",
-                  y: "10.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "180.27",
-                  height: "14.2"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "2.74",
-                  y: "40.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "111.84",
-                  height: "15.2"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "3.56",
-                  y: "97.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "439.86",
-                  height: "18.56"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "2.6",
-                  y: "129.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "439.86",
-                  height: "19.52"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "2.6",
-                  y: "158.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "439.86",
-                  height: "20.48"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "2.6",
-                  y: "189.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "439.86",
-                  height: "17.6"
-                }
-              })
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.myData
-        ? _c(
-            "content-loader",
-            {
-              attrs: {
-                height: 530,
-                width: 430,
-                speed: 2,
-                id: "loader-mobile",
-                primaryColor: "#695f45",
-                secondaryColor: "#ecebeb"
-              }
-            },
-            [
-              _c("rect", {
-                attrs: {
-                  x: "10",
-                  y: "11.54",
-                  rx: "0",
-                  ry: "0",
-                  width: "0",
-                  height: "0"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "38.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "211.95",
-                  height: "33"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "32.83",
-                  y: "81.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "139.89",
-                  height: "24.42"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "138.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "179.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "220.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "259.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "298.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "31.83",
-                  y: "339.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "379.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "419.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "459.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "498.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "539.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "30.83",
-                  y: "579.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "29.83",
-                  y: "620.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              }),
-              _vm._v(" "),
-              _c("rect", {
-                attrs: {
-                  x: "29.83",
-                  y: "660.67",
-                  rx: "0",
-                  ry: "0",
-                  width: "375.15",
-                  height: "32.01"
-                }
-              })
-            ]
-          )
-        : _c("div", { staticClass: "my-real-content" }, [
-            _c(
-              "h1",
-              {
-                staticStyle: {
-                  "margin-top": "40px !important",
-                  "font-size": "1.45rem !important",
-                  "margin-left": "0px !important"
-                }
-              },
-              [_vm._v("Add a New Place")]
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.createProperty()
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        {
+          staticClass: "col-12 col-lg-8 m-auto",
+          staticStyle: {
+            "margin-top": "30px !important",
+            "margin-bottom": "10px !important"
+          }
+        },
+        [
+          !_vm.myData
+            ? _c(
+                "content-loader",
+                {
+                  attrs: {
+                    height: 370,
+                    width: 450,
+                    speed: 2,
+                    id: "loader-pc",
+                    primaryColor: "#695f45",
+                    secondaryColor: "#ecebeb"
                   }
-                }
-              },
-              [
+                },
+                [
+                  _c("rect", {
+                    attrs: {
+                      x: "10",
+                      y: "11.54",
+                      rx: "0",
+                      ry: "0",
+                      width: "0",
+                      height: "0"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "3.14",
+                      y: "10.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "180.27",
+                      height: "14.2"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "2.74",
+                      y: "40.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "111.84",
+                      height: "15.2"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "3.56",
+                      y: "97.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "439.86",
+                      height: "18.56"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "2.6",
+                      y: "129.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "439.86",
+                      height: "19.52"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "2.6",
+                      y: "158.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "439.86",
+                      height: "20.48"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "2.6",
+                      y: "189.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "439.86",
+                      height: "17.6"
+                    }
+                  })
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.myData
+            ? _c(
+                "content-loader",
+                {
+                  attrs: {
+                    height: 530,
+                    width: 430,
+                    speed: 2,
+                    id: "loader-mobile",
+                    primaryColor: "#695f45",
+                    secondaryColor: "#ecebeb"
+                  }
+                },
+                [
+                  _c("rect", {
+                    attrs: {
+                      x: "10",
+                      y: "11.54",
+                      rx: "0",
+                      ry: "0",
+                      width: "0",
+                      height: "0"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "38.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "211.95",
+                      height: "33"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "32.83",
+                      y: "81.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "139.89",
+                      height: "24.42"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "138.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "179.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "220.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "259.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "298.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "31.83",
+                      y: "339.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "379.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "419.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "459.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "498.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "539.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "30.83",
+                      y: "579.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "29.83",
+                      y: "620.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("rect", {
+                    attrs: {
+                      x: "29.83",
+                      y: "660.67",
+                      rx: "0",
+                      ry: "0",
+                      width: "375.15",
+                      height: "32.01"
+                    }
+                  })
+                ]
+              )
+            : _c("div", { staticClass: "my-real-content" }, [
                 _c(
-                  "div",
+                  "form",
                   {
-                    staticClass: "card",
-                    staticStyle: { padding: "20px 15px 5px 15px" }
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.createProperty()
+                      }
+                    }
                   },
                   [
                     _c(
                       "div",
-                      { staticClass: "form-group" },
+                      {
+                        staticClass:
+                          "multisteps-form__panel shadow p-4 rounded bg-white js-active",
+                        attrs: { "data-animation": "scaleIn" }
+                      },
                       [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Property Name")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.name,
-                              expression: "form.name"
+                        _c(
+                          "h3",
+                          {
+                            staticStyle: {
+                              "margin-top": "40px !important",
+                              "font-size": "1.45rem !important",
+                              "margin-left": "0px !important"
                             }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-invalid": _vm.form.errors.has("name") },
-                          attrs: {
-                            type: "text",
-                            name: "name",
-                            id: "name",
-                            placeholder:
-                              "Ex. 4-Bedroom luxury house in a secured neighborhood..",
-                            autocomplete: "off"
                           },
-                          domProps: { value: _vm.form.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "name", $event.target.value)
-                            }
-                          }
-                        }),
+                          [_vm._v("Add a New Place")]
+                        ),
                         _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "name" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "price" } }, [
-                        _vm._v("Price (per night)")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "input-group" },
-                        [
-                          _c("div", { staticClass: "input-group-prepend" }, [
-                            _c("div", { staticClass: "input-group-text" }, [
-                              _vm._v("$")
-                            ])
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "name" } }, [
+                              _vm._v("Property Name")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.name,
+                                  expression: "form.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("name")
+                              },
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                id: "name",
+                                placeholder:
+                                  "Ex. 4-Bedroom luxury house in a secured neighborhood..",
+                                autocomplete: "off"
+                              },
+                              domProps: { value: _vm.form.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "name" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "price" } }, [
+                            _vm._v("Price (per night)")
                           ]),
                           _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.price,
-                                expression: "form.price"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.form.errors.has("price")
-                            },
-                            attrs: {
-                              autocomplete: "off",
-                              type: "number",
-                              name: "price",
-                              id: "price",
-                              placeholder: "50"
-                            },
-                            domProps: { value: _vm.form.price },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                          _c(
+                            "div",
+                            { staticClass: "input-group" },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "input-group-prepend" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "input-group-text" },
+                                    [_vm._v("$")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.price,
+                                    expression: "form.price"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("price")
+                                },
+                                attrs: {
+                                  autocomplete: "off",
+                                  type: "number",
+                                  name: "price",
+                                  id: "price",
+                                  placeholder: "50"
+                                },
+                                domProps: { value: _vm.form.price },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "price",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
-                                _vm.$set(_vm.form, "price", $event.target.value)
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "price" }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "rooms" } }, [
+                              _vm._v("How many rooms?")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.rooms,
+                                    expression: "form.rooms"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("rooms")
+                                },
+                                attrs: { name: "rooms", id: "rooms" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "rooms",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select An Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("1")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "2" } }, [
+                                  _vm._v("2")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "3" } }, [
+                                  _vm._v("3")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "4" } }, [
+                                  _vm._v("4")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "5" } }, [
+                                  _vm._v("5+")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "rooms" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "location" } }, [
+                              _vm._v("Where's your place?")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.location,
+                                    expression: "form.location"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("location")
+                                },
+                                attrs: { name: "location", id: "location" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "location",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select An Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "lagos" } }, [
+                                  _vm._v("Lagos")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "ibadan" } }, [
+                                  _vm._v("Ibadan")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "abuja" } }, [
+                                  _vm._v("Abuja")
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "location" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "description" } }, [
+                              _vm._v("Say more about the place...")
+                            ]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.description,
+                                  expression: "form.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("description")
+                              },
+                              attrs: {
+                                name: "description",
+                                id: "description",
+                                rows: "3"
+                              },
+                              domProps: { value: _vm.form.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          }),
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "description" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", { attrs: { for: "email" } }, [
+                              _vm._v("Contact Email")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.email,
+                                  expression: "form.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("email")
+                              },
+                              attrs: {
+                                autocomplete: "off",
+                                name: "email",
+                                type: "email",
+                                id: "email",
+                                placeholder: "work@domain.com"
+                              },
+                              domProps: { value: _vm.form.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "email" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { attrs: { for: "" } }, [
+                            _vm._v("Add a Featured Photo")
+                          ]),
                           _vm._v(" "),
-                          _c("has-error", {
-                            attrs: { form: _vm.form, field: "price" }
-                          })
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "rooms" } }, [
-                          _vm._v("How many rooms?")
+                          _c(
+                            "div",
+                            {
+                              staticClass: "col-sm-12",
+                              staticStyle: { "padding-left": "0px !important" }
+                            },
+                            [
+                              _c("input", {
+                                attrs: {
+                                  type: "file",
+                                  name: "file-input",
+                                  id: "file-input"
+                                },
+                                on: { change: _vm.uploadPropertyPicture }
+                              })
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c(
-                          "select",
+                          "button",
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.rooms,
-                                expression: "form.rooms"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.form.errors.has("rooms")
-                            },
-                            attrs: { name: "rooms", id: "rooms" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "rooms",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
+                            staticClass: "btn btn-primary",
+                            staticStyle: { "margin-top": "10px" },
+                            attrs: { type: "submit" }
                           },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Select An Option")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "1" } }, [
-                              _vm._v("1")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "2" } }, [
-                              _vm._v("2")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "3" } }, [
-                              _vm._v("3")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "4" } }, [
-                              _vm._v("4")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "5" } }, [
-                              _vm._v("5+")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "rooms" }
-                        })
-                      ],
-                      1
+                          [_vm._v("Submit Now")]
+                        )
+                      ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "location" } }, [
-                          _vm._v("Where's your place?")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.location,
-                                expression: "form.location"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            class: {
-                              "is-invalid": _vm.form.errors.has("location")
-                            },
-                            attrs: { name: "location", id: "location" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "location",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Select An Option")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "lagos" } }, [
-                              _vm._v("Lagos")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "ibadan" } }, [
-                              _vm._v("Ibadan")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "abuja" } }, [
-                              _vm._v("Abuja")
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "location" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "description" } }, [
-                          _vm._v("Say more about the place...")
-                        ]),
-                        _vm._v(" "),
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.description,
-                              expression: "form.description"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.form.errors.has("description")
-                          },
-                          attrs: {
-                            name: "description",
-                            id: "description",
-                            rows: "3"
-                          },
-                          domProps: { value: _vm.form.description },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "description",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "description" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "email" } }, [
-                          _vm._v("Contact Email")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.email,
-                              expression: "form.email"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: { "is-invalid": _vm.form.errors.has("email") },
-                          attrs: {
-                            autocomplete: "off",
-                            name: "email",
-                            type: "email",
-                            id: "email",
-                            placeholder: "work@domain.com"
-                          },
-                          domProps: { value: _vm.form.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "email", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form, field: "email" }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "photo" } }, [
-                        _vm._v("Add a Photo")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-12" }, [
-                        _c("input", {
-                          staticClass: "form-input",
-                          attrs: { name: "photo", type: "file", id: "photo" }
-                        })
-                      ])
-                    ])
+                    _c("div", { staticClass: "col text-center" })
                   ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col text-center" }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    staticStyle: { "margin-top": "10px" },
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Submit Now")]
                 )
-              ]
-            )
-          ])
-    ],
-    1
-  )
+              ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43751,8 +43860,7 @@ var render = function() {
                       _c("img", {
                         staticClass: "card-img-top lazyload img-responsive",
                         attrs: {
-                          src:
-                            "https://a0.muscache.com/im/pictures/91a3448d-78ea-4d44-9b84-d78a75ae01f3.jpg",
+                          src: "/img/property/" + lagosproperty.photo,
                           alt: "..."
                         }
                       }),
@@ -43771,10 +43879,34 @@ var render = function() {
                           [_vm._v("$" + _vm._s(lagosproperty.price) + "/night")]
                         ),
                         _vm._v(" "),
-                        _c("p", { staticClass: "card-text" }, [
-                          _c("small", { staticClass: "text-muted" }, [
-                            _vm._v("Click to see more..")
-                          ])
+                        _c("div", { staticStyle: { overflow: "hidden" } }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "card-text",
+                              staticStyle: { float: "left !important" },
+                              attrs: { href: "#" }
+                            },
+                            [
+                              _c("small", { staticClass: "text-muted" }, [
+                                _vm._v("Click to see more..")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("img", {
+                            staticStyle: {
+                              float: "right",
+                              border: "1px solid white",
+                              "border-radius": "50%"
+                            },
+                            attrs: {
+                              height: "25",
+                              width: "25",
+                              src: "/img/profile/" + lagosproperty.user.photo,
+                              alt: ""
+                            }
+                          })
                         ])
                       ])
                     ]
@@ -44011,8 +44143,7 @@ var render = function() {
                   _c("img", {
                     staticClass: "card-img-top lazyload img-responsive",
                     attrs: {
-                      src:
-                        "https://a0.muscache.com/im/pictures/91a3448d-78ea-4d44-9b84-d78a75ae01f3.jpg",
+                      src: "/img/property/" + property.photo,
                       alt: "..."
                     }
                   }),
@@ -44031,10 +44162,34 @@ var render = function() {
                       [_vm._v("$" + _vm._s(property.price) + "/night")]
                     ),
                     _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Click to see more..")
-                      ])
+                    _c("div", { staticStyle: { overflow: "hidden" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "card-text",
+                          staticStyle: { float: "left !important" },
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _c("small", { staticClass: "text-muted" }, [
+                            _vm._v("Click to see more..")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticStyle: {
+                          float: "right",
+                          border: "1px solid white",
+                          "border-radius": "50%"
+                        },
+                        attrs: {
+                          height: "25",
+                          width: "25",
+                          src: "/img/profile/" + property.user.photo,
+                          alt: ""
+                        }
+                      })
                     ])
                   ])
                 ]
@@ -44960,7 +45115,7 @@ var render = function() {
               },
               [
                 _c("h3", { staticClass: "multisteps-form__title" }, [
-                  _vm._v("Edit Your User Info")
+                  _vm._v("Edit Your Profile")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "container" }, [
@@ -45003,7 +45158,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "multisteps-form__input form-control",
-                        attrs: { type: "text", placeholder: "Full Name" },
+                        attrs: {
+                          autocomplete: "off",
+                          type: "text",
+                          placeholder: "Full Name"
+                        },
                         domProps: { value: _vm.form.name },
                         on: {
                           input: function($event) {
@@ -45027,7 +45186,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "multisteps-form__input form-control",
-                        attrs: { type: "text", placeholder: "Email Address" },
+                        attrs: {
+                          autocomplete: "off",
+                          type: "text",
+                          placeholder: "Email Address"
+                        },
                         domProps: { value: _vm.form.email },
                         on: {
                           input: function($event) {
