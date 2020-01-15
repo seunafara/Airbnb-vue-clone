@@ -4,9 +4,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
+
 require("./bootstrap");
 
 window.Vue = require("vue");
+
+window.Fire = new Vue();
 
 
 
@@ -19,6 +23,7 @@ import Home from "./components/Home";
 import Explore from "./components/Explore";
 import AddProperty from "./components/AddProperty";
 import Profile from "./components/Profile";
+import Property from "./components/Property";
 import NotFound from "./components/NotFound";
 const routes = [
     { path: "/dashboard", component: Home },
@@ -26,6 +31,7 @@ const routes = [
     { path: "/explore", component: Explore },
     { path: "/addproperty", component: AddProperty },
     { path: "/profile", component: Profile },
+    {path: '/property/:id', component: Property},
     { path: "*", component: NotFound }
 ];
 
@@ -98,5 +104,11 @@ window.Form = Form;
 const app = new Vue({
 
     el: "#app",
-    router
+    router,
+    data: {
+
+    },
+    methods: {
+
+    }
 });

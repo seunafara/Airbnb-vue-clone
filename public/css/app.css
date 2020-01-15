@@ -11387,38 +11387,3 @@ input[type=file]::-ms-browse {
   border-radius: 0.2em;
 }
 
-.masonry {
-  clear: both;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.masonry__item {
-  float: left;
-  width: 150px;
-  height: 150px;
-  display: block;
-  background-color: #ccc;
-  margin: 0 10px 10px 0;
-  border-radius: 2px;
-}
-
-.masonry__item:nth-child(1) {
-  width: 321px;
-  height: 310px;
-  background-color: #666;
-}
-
-.masonry__item:nth-child(16n+16) {
-  width: 321px;
-  height: 310px;
-  float: right;
-  background-color: #09f;
-}
-
-.masonry__item:nth-child(27n+27) {
-  width: 321px;
-  height: 310px;
-  background-color: #f90;
-}
-

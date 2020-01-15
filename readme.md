@@ -19,8 +19,9 @@ Adding new properties to the application <br>
 Frontend validation when adding property <br>
 User Profile setup <br>
 Uploading featured image for properties <br>
+Explore random properties tab <br>
+Individual Property Page with book function <br>
 
 ## What's Pending?
 List all properties in a separate page per location <br>
-Explore random properties tab <br>
 Simple landing, login and registration page design <br>

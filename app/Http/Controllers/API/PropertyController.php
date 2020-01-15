@@ -30,8 +30,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
-//        $username = User::pluck('name', 'id')->firstOrFail();
+        // get random
+//        return Property::with('user')->inRandomOrder()->paginate(4);
 
         return Property::with('user')->latest()->paginate(4);
     }
@@ -124,6 +124,31 @@ class PropertyController extends Controller
 
     public function loadLagos() {
         return Property::with('user')->latest()->where('location', 'lagos')->paginate(4);
+    }
+
+    public function loadRandom($limit)
+    {
+        return Property::with('user')->inRandomOrder()->paginate($limit);
+    }
+
+    public function findProperty(){
+
+        if ($search = \Request::get('q')) {
+            $properties = Property::with('user')->where(function($query) use ($search){
+                $query->where('name','LIKE',"%$search%")
+                    ->orWhere('price','LIKE',"%$search%")->orWhere('location','LIKE',"%$search%");
+            })->paginate(20);
+        }else{
+            $properties= Property::latest()->paginate(9);
+        }
+        return $properties;
+    }
+
+    public function property($id){
+        $property = Property::with('user')->where('id', $id)->first();
+
+        return $property;
+
     }
 
 
