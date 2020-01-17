@@ -61,7 +61,7 @@
 
         <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
           <h3 style="margin-top:40px !important; font-size:1.45rem !important; margin-left: 0px !important;">Add a New Place</h3>
-          <hr style="width: 65px !important">
+          <hr style="width: 65px !important;">
         <div class="form-group">
           <label for="name">Property Name</label>
             <input v-model="form.name" type="text" class="form-control"

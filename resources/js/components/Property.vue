@@ -90,7 +90,8 @@
                                         </div>
                                         <div class="col-8">
                                             <h6 class="h6-responsive mb-0"><strong>{{rand.name}}</strong></h6>
-                                            <small class="text-muted">Jan 29, 2018</small>
+                                            <small class="text-muted">{{rand.created_at | myDate}}</small>
+
                                         </div>
                                     </div>
                                         </a>

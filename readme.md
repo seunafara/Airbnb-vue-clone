@@ -21,7 +21,7 @@ User Profile setup <br>
 Uploading featured image for properties <br>
 Explore random properties tab <br>
 Individual Property Page with book function <br>
+List all properties in a separate page per location <br>
 
 ## What's Pending?
-List all properties in a separate page per location <br>
 Simple landing, login and registration page design <br>

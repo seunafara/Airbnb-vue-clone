@@ -24,6 +24,7 @@ import Explore from "./components/Explore";
 import AddProperty from "./components/AddProperty";
 import Profile from "./components/Profile";
 import Property from "./components/Property";
+import LagosProperties from "./components/LagosProperties";
 import NotFound from "./components/NotFound";
 const routes = [
     { path: "/dashboard", component: Home },
@@ -32,6 +33,7 @@ const routes = [
     { path: "/addproperty", component: AddProperty },
     { path: "/profile", component: Profile },
     {path: '/property/:id', component: Property},
+    {path: '/allproperties/lagos', component: LagosProperties},
     { path: "*", component: NotFound }
 ];
 
@@ -99,6 +101,14 @@ import { Form, HasError, AlertError } from "vform";
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 window.Form = Form;
+
+
+// import moment url -
+import moment from "moment";
+// moment js url - https://momentjs.com/
+Vue.filter("myDate", function(created) {
+    return (created = moment().format("MMMM DD YYYY"));
+});
 
 
 const app = new Vue({

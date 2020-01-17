@@ -52,7 +52,7 @@
                             <p class="card-text" style="margin-bottom: 0.2rem; !important;">${{lagosproperty.price}}/night</p>
                             <div style="overflow: hidden;">
 
-                                <router-link :to="'/property/' + lagosproperty.id " class="card-text" style="float: left !important;"><small class="text-muted">Click to see more..</small></router-link>
+                                <router-link :to="'/property/' + lagosproperty.id " class="card-text" style="float: left !important;"><small style="color: blue;">Click to see more..</small></router-link>
                                 <img height="25" width="25" :src="'/img/profile/' + lagosproperty.user.photo" style="float: right;border: 1px solid white;border-radius:50%" alt="">
 
                             </div>
@@ -65,7 +65,7 @@
 
 
 
-            <button class="btn btn-primary" style="margin-top:15px !important; margin-left:5px !important">See all in Lagos</button>
+            <router-link :to="'/allproperties/' + 'lagos'" class="btn btn-primary" style="margin-top:15px !important; margin-left:5px !important">See all in Lagos</router-link>
         </div>
 
 
@@ -120,9 +120,9 @@
 
 
                     <div style="overflow: hidden;">
-                        <router-link :to="'/property/' + property.id " class="card-text" style="float: left !important;"><small class="text-muted">Click to see more..</small></router-link>
+                        <router-link :to="'/property/' + property.id " class="card-text" style="float: left !important;"><small style="color: blue;">Click to see more..</small></router-link>
                         <img height="25" width="25" :src="'/img/profile/' + property.user.photo" style="float: right;border: 1px solid white;border-radius:50%" alt="">
-                        <!--              <p style="float: right;">{{ property.user.name}}</p>-->
+
 
                     </div>
 
@@ -181,8 +181,13 @@
                     });
             },
             loadLagos(){
-                axios.get('api/loadlagos').then(({data}) => {
+                let location = 'lagos';
+                let paginate = 4;
+                axios.get(`api/loadall/${location}/${paginate}`).then(({data}) => {
                     this.lagosproperties = data.data;
+
+                }).catch(err => {
+                    console.log(err);
                 })
             }
 

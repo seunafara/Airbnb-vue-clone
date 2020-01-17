@@ -15,6 +15,7 @@
 
             <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
               <h3 class="multisteps-form__title">Edit Your Profile</h3>
+              <hr style="width: 65px !important">
 
               <div class="container">
 

@@ -17,12 +17,6 @@ class PropertyController extends Controller
 //
 //    }
 
-//    public function showuser($user) {
-//        $username = User::where('name', $user)
-//            ->firstOrFail();
-//
-//        return Property::latest()->with('user', $username);
-//    }
     /**
      * Display a listing of the resource.
      *
@@ -30,8 +24,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        // get random
-//        return Property::with('user')->inRandomOrder()->paginate(4);
+
 
         return Property::with('user')->latest()->paginate(4);
     }
@@ -47,10 +40,6 @@ class PropertyController extends Controller
         //
 
         $user = auth('api')->user();
-
-//        $property = new Property($request->all());
-//        $property->user_id = Auth::user()->id;
-//        $property->save();
 
 
              $this->validate($request, [
@@ -122,8 +111,8 @@ class PropertyController extends Controller
         //
     }
 
-    public function loadLagos() {
-        return Property::with('user')->latest()->where('location', 'lagos')->paginate(4);
+    public function loadAll($location, $paginate) {
+        return Property::with('user')->latest()->where('location', $location)->paginate($paginate);
     }
 
     public function loadRandom($limit)
@@ -139,7 +128,22 @@ class PropertyController extends Controller
                     ->orWhere('price','LIKE',"%$search%")->orWhere('location','LIKE',"%$search%");
             })->paginate(20);
         }else{
-            $properties= Property::latest()->paginate(9);
+            $properties= Property::with('user')->latest()->paginate(9);
+        }
+        return $properties;
+    }
+
+    public function findSpecificProperty($location){
+
+
+        if ($search = \Request::get('q')) {
+
+            $properties = Property::with('user')->where('location', $location)->where(function($query) use ($search){
+                $query->where('name','LIKE',"%$search%")
+                    ->orWhere('price','LIKE',"%$search%")->orWhere('location','LIKE',"%$search%");
+            })->paginate(3);
+        }else{
+            $properties= Property::with('user')->latest()->where('location', $location)->paginate(3);
         }
         return $properties;
     }

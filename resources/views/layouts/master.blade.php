@@ -84,6 +84,9 @@
         background-position: center;
       }
 
+      /***
+      * Navigation
+       */
       @media (min-width: 426px) {
         .router-link-exact-active .bottom-navigation-label{
           padding: 6px 12px 10px 12px !important;
@@ -452,7 +455,7 @@ main {
         style="text-decoration:none;"
         to="/profile"
       >
-        <i class="material-icons">account_box</i>
+        <i class="material-icons">account_circle</i>
         <span class="bottom-navigation-label">Account</span>
         </router-link>
 

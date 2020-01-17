@@ -19,9 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // everything properties
 Route::apiResources(['property' => 'API\PropertyController']);
-Route::get('loadlagos', 'API\PropertyController@loadLagos');
+Route::get('loadall/{location}/{paginate}', 'API\PropertyController@loadAll');
 Route::get('loadrandom/{limit}', 'API\PropertyController@loadRandom');
 Route::get('/findproperty', 'API\PropertyController@findProperty');
+Route::get('/findspecificproperty/{location}', 'API\PropertyController@findSpecificProperty');
 Route::get('showproperty/{id}', 'API\PropertyController@property');
 
 // everything users
